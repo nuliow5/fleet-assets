@@ -14,7 +14,7 @@ import java.time.LocalDate;
 @Setter
 public class SimDTO {
     private Long id;
-    private Long iccid;
+    private String iccid;
     private Integer number;
     private String pin;
     private Operator operator;

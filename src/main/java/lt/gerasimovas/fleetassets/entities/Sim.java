@@ -21,7 +21,7 @@ public class Sim {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
     @Column(name = "iccid", nullable = false, unique = true)
-    private Long iccid;
+    private String iccid;
     @Column(nullable = false)
     private Integer number;
     private String pin;

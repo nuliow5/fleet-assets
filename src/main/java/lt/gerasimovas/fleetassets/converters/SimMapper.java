@@ -2,6 +2,7 @@ package lt.gerasimovas.fleetassets.converters;
 
 import lt.gerasimovas.fleetassets.dto.SimDTO;
 import lt.gerasimovas.fleetassets.entities.Sim;
+import org.springframework.data.domain.Page;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -46,6 +47,17 @@ public class SimMapper {
         if (sims != null && !sims.isEmpty()){
             simDTOList = new ArrayList<>();
             for (Sim s : sims){
+                simDTOList.add(fromEntityToSimDto(s));
+            }
+        }
+        return simDTOList;
+    }
+
+    public static List<SimDTO> convertPageToDtoList(Page<Sim> simPage){
+        List<SimDTO> simDTOList = null;
+        if (simPage != null && !simPage.isEmpty()) {
+            simDTOList = new ArrayList<>();
+            for (Sim s : simPage){
                 simDTOList.add(fromEntityToSimDto(s));
             }
         }
