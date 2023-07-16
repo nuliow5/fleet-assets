@@ -1,0 +1,1 @@
+database architecture - https://dbdiagram.io/d/649e9c8e02bd1c4a5e4c42a1
