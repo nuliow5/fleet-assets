@@ -25,9 +25,9 @@ public class SimMapper {
         return sim;
     }
 
-    public static SimDTO fromEntityToSimDto(Sim sim){
+    public static SimDTO fromEntityToSimDto(Sim sim) {
         SimDTO simDTO = null;
-        if (sim != null){
+        if (sim != null) {
             simDTO = new SimDTO();
             simDTO.setId(sim.getId());
             simDTO.setIccid(sim.getIccid());
@@ -42,25 +42,27 @@ public class SimMapper {
         return simDTO;
     }
 
-    public static List<SimDTO> fromEntitiesListToDtoList(List<Sim> sims){
+    public static List<SimDTO> fromEntitiesListToDtoList(List<Sim> sims) {
         List<SimDTO> simDTOList = null;
-        if (sims != null && !sims.isEmpty()){
+        if (sims != null && !sims.isEmpty()) {
             simDTOList = new ArrayList<>();
-            for (Sim s : sims){
+            for (Sim s : sims) {
                 simDTOList.add(fromEntityToSimDto(s));
             }
         }
         return simDTOList;
     }
 
-    public static List<SimDTO> convertPageToDtoList(Page<Sim> simPage){
+    public static List<SimDTO> convertPageToDtoList(Page<Sim> simPage) {
         List<SimDTO> simDTOList = null;
         if (simPage != null && !simPage.isEmpty()) {
             simDTOList = new ArrayList<>();
-            for (Sim s : simPage){
+            for (Sim s : simPage) {
                 simDTOList.add(fromEntityToSimDto(s));
             }
         }
         return simDTOList;
     }
+
+
 }
