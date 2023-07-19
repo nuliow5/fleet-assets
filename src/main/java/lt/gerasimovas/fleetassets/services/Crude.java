@@ -21,4 +21,6 @@ public interface Crude<D, E> {
     public void deleteById(Long id);
 
 
+
+
 }

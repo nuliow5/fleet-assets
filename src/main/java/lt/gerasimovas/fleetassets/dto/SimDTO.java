@@ -22,4 +22,5 @@ public class SimDTO {
     private String ip;
     private LocalDate activate;
     private LocalDate deActivate;
+//    private Truck truck;
 }

@@ -8,7 +8,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class SimMapper {
-    public static Sim fromDtoToSimEntity(SimDTO simDTO) {
+    public static Sim fromDtoToEntity(SimDTO simDTO) {
         Sim sim = null;
         if (simDTO != null) {
             sim = new Sim();
@@ -25,7 +25,7 @@ public class SimMapper {
         return sim;
     }
 
-    public static SimDTO fromEntityToSimDto(Sim sim) {
+    public static SimDTO fromEntityToDto(Sim sim) {
         SimDTO simDTO = null;
         if (sim != null) {
             simDTO = new SimDTO();
@@ -47,7 +47,7 @@ public class SimMapper {
         if (sims != null && !sims.isEmpty()) {
             simDTOList = new ArrayList<>();
             for (Sim s : sims) {
-                simDTOList.add(fromEntityToSimDto(s));
+                simDTOList.add(fromEntityToDto(s));
             }
         }
         return simDTOList;
@@ -58,7 +58,7 @@ public class SimMapper {
         if (simPage != null && !simPage.isEmpty()) {
             simDTOList = new ArrayList<>();
             for (Sim s : simPage) {
-                simDTOList.add(fromEntityToSimDto(s));
+                simDTOList.add(fromEntityToDto(s));
             }
         }
         return simDTOList;

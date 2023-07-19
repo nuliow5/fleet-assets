@@ -15,22 +15,22 @@ import java.util.NoSuchElementException;
 @AllArgsConstructor
 public class SimService implements Crude<SimDTO, Sim>{
     private SimRepository simRepository;
-
+    @Override
     public List<SimDTO> getAllDto(Pageable pageable) {
         if (pageable != null){
-            return SimMapper.convertPageToDtoList(simRepository.findAll(pageable));
+            return SimMapper.convertPageToDtoList(this.simRepository.findAll(pageable));
         }
-        return SimMapper.fromEntitiesListToDtoList(simRepository.findAll());
+        return SimMapper.fromEntitiesListToDtoList(this.simRepository.findAll());
     }
 
     @Override
     public SimDTO getById(Long id) {
-        return SimMapper.fromEntityToSimDto(simRepository.findById(id).get());
+        return SimMapper.fromEntityToDto(this.simRepository.findById(id).get());
     }
 
     @Override
     public SimDTO create(SimDTO simDTO) {
-        Sim sim = SimMapper.fromDtoToSimEntity(simDTO);
+        Sim sim = SimMapper.fromDtoToEntity(simDTO);
         this.simRepository.save(sim);
 
         return simDTO;
@@ -38,7 +38,7 @@ public class SimService implements Crude<SimDTO, Sim>{
 
     @Override
     public SimDTO update(SimDTO simDTO) {
-        Sim simForUpdate = simRepository.findById(simDTO.getId()).get();
+        Sim simForUpdate = this.simRepository.findById(simDTO.getId()).get();
         if (simDTO.getIccid() != null){
             simForUpdate.setIccid(simDTO.getIccid());
         }
@@ -71,14 +71,15 @@ public class SimService implements Crude<SimDTO, Sim>{
             simForUpdate.setDeActivate(simDTO.getDeActivate());
         }
 
-        simRepository.save(simForUpdate);
-        return simDTO;
+        this.simRepository.save(simForUpdate);
+
+        return SimMapper.fromEntityToDto(simForUpdate);
     }
 
     @Override
     public void deleteById(Long id) {
-        if (simRepository.findById(id).get() != null){
-            simRepository.deleteById(id);
+        if (this.simRepository.findById(id).get() != null){
+            this.simRepository.deleteById(id);
         } else {
             throw new NoSuchElementException();
         }
