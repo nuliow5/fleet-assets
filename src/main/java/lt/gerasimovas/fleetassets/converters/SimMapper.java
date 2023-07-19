@@ -2,6 +2,7 @@ package lt.gerasimovas.fleetassets.converters;
 
 import lt.gerasimovas.fleetassets.dto.SimDTO;
 import lt.gerasimovas.fleetassets.entities.Sim;
+import lt.gerasimovas.fleetassets.entities.Truck;
 import org.springframework.data.domain.Page;
 
 import java.util.ArrayList;
@@ -21,6 +22,12 @@ public class SimMapper {
             sim.setIp(simDTO.getIp());
             sim.setActivate(simDTO.getActivate());
             sim.setDeActivate(simDTO.getDeActivate());
+
+            if (simDTO.getTruckId() != null){
+                Truck truck = new Truck();
+                truck.setId(sim.getId());
+                sim.setTruck(truck);
+            }
         }
         return sim;
     }
@@ -38,6 +45,10 @@ public class SimMapper {
             simDTO.setIp(sim.getIp());
             simDTO.setActivate(sim.getActivate());
             simDTO.setDeActivate(sim.getDeActivate());
+
+            if (sim.getTruck() != null){
+                simDTO.setTruckId(sim.getTruck().getId());
+            }
         }
         return simDTO;
     }

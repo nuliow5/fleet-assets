@@ -35,6 +35,10 @@ public class Sim {
     private LocalDate activate;
     private LocalDate deActivate;
 
+    @ManyToOne
+    @JoinColumn(name = "truck_id")
+    private Truck truck;
+
     @Column(name = "created_at")
     private LocalDateTime createdAt;
 
