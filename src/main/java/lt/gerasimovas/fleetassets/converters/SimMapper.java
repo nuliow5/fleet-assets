@@ -48,6 +48,7 @@ public class SimMapper {
 
             if (sim.getTruck() != null){
                 simDTO.setTruckId(sim.getTruck().getId());
+                simDTO.setTruckLicensePlate(sim.getTruck().getLicensePlate());
             }
         }
         return simDTO;

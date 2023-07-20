@@ -2,11 +2,11 @@ package lt.gerasimovas.fleetassets.services;
 
 import lombok.AllArgsConstructor;
 import lt.gerasimovas.fleetassets.converters.SimMapper;
-import lt.gerasimovas.fleetassets.converters.TruckMapper;
 import lt.gerasimovas.fleetassets.dto.SimDTO;
 import lt.gerasimovas.fleetassets.entities.Sim;
 import lt.gerasimovas.fleetassets.entities.Truck;
 import lt.gerasimovas.fleetassets.repositories.SimRepository;
+import lt.gerasimovas.fleetassets.repositories.TruckRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Service;
@@ -18,6 +18,7 @@ import java.util.NoSuchElementException;
 @AllArgsConstructor
 public class SimService implements Crude<SimDTO, Sim>{
     private SimRepository simRepository;
+    private TruckRepository truckRepository;
 
     @Autowired
     TruckService truckService;
@@ -78,8 +79,9 @@ public class SimService implements Crude<SimDTO, Sim>{
         }
 
         if (simDTO.getTruckId() != null){
-            Truck truck = TruckMapper.fromDtoToSimEntity(this.truckService.getById(simDTO.getId()));
+            Truck truck = this.truckRepository.findById(simDTO.getTruckId()).get();
             simForUpdate.setTruck(truck);
+
         }
 
         this.simRepository.save(simForUpdate);

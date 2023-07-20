@@ -23,4 +23,5 @@ public class SimDTO {
     private LocalDate activate;
     private LocalDate deActivate;
     private Long truckId;
+    private String truckLicensePlate;
 }
