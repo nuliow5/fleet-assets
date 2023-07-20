@@ -49,7 +49,11 @@ public class SimController {
             return ResponseEntity.ok(this.simService.update(simDTO));
         } catch (NoSuchElementException e) {
             throw new ResponseStatusException(HttpStatus.NOT_FOUND,
-                    String.format("Sim by ID: %s not found", simDTO.getId()));
+                    String.format("Sim!! by ID: %s not found", simDTO.getId()));
+        } catch (NoSuchFieldException e){
+            throw new ResponseStatusException(HttpStatus.NOT_FOUND,
+//                    String.format("This truck License Plate %s, dont exist", simDTO.getTruckLicensePlate()));
+                    String.format("This truck License Plate or truckID, dont exist"));
         }
 
     }

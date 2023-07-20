@@ -13,6 +13,7 @@ import org.springframework.stereotype.Service;
 
 import java.util.List;
 import java.util.NoSuchElementException;
+import java.util.Optional;
 
 @Service
 @AllArgsConstructor
@@ -44,7 +45,7 @@ public class SimService implements Crude<SimDTO, Sim>{
     }
 
     @Override
-    public SimDTO update(SimDTO simDTO) {
+    public SimDTO update(SimDTO simDTO) throws NoSuchFieldException {
         Sim simForUpdate = this.simRepository.findById(simDTO.getId()).get();
         if (simDTO.getIccid() != null){
             simForUpdate.setIccid(simDTO.getIccid());
@@ -79,8 +80,20 @@ public class SimService implements Crude<SimDTO, Sim>{
         }
 
         if (simDTO.getTruckId() != null){
-            Truck truck = this.truckRepository.findById(simDTO.getTruckId()).get();
-            simForUpdate.setTruck(truck);
+            Optional<Truck> truck = this.truckRepository.findById(simDTO.getTruckId());
+            if (!truck.isEmpty()){
+                simForUpdate.setTruck(truck.get());
+            } else {
+                throw new NoSuchFieldException();
+            }
+
+        } else if (simDTO.getTruckLicensePlate() != null) {
+            Truck truck = this.truckRepository.findByLicensePlate(simDTO.getTruckLicensePlate());
+            if (truck != null){
+                simForUpdate.setTruck(truck);
+            } else {
+                throw new NoSuchFieldException();
+            }
 
         }
 
