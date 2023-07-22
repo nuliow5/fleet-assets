@@ -52,8 +52,7 @@ public class SimController {
                     String.format("Sim!! by ID: %s not found", simDTO.getId()));
         } catch (NoSuchFieldException e){
             throw new ResponseStatusException(HttpStatus.NOT_FOUND,
-//                    String.format("This truck License Plate %s, dont exist", simDTO.getTruckLicensePlate()));
-                    String.format("This truck License Plate or truckID, dont exist"));
+                    String.format("This truck License Plate or truckID, do not exist"));
         }
 
     }

@@ -16,11 +16,8 @@ public interface Crude<D, E> {
 
     public D create(D d);
 
-    public D update(D d);
+    public D update(D d) throws NoSuchFieldException;
 
     public void deleteById(Long id);
-
-
-
 
 }
