@@ -1,10 +1,7 @@
 package lt.gerasimovas.fleetassets.entities;
 
 import jakarta.persistence.*;
-import lombok.AllArgsConstructor;
-import lombok.Getter;
-import lombok.NoArgsConstructor;
-import lombok.Setter;
+import lombok.*;
 import lt.gerasimovas.fleetassets.enumes.Operator;
 
 import java.time.LocalDate;
@@ -20,21 +17,23 @@ public class Sim {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
-    @Column(name = "iccid", nullable = false, unique = true)
+//    @Column(name = "iccid", nullable = false, unique = true)
+    @Column(name = "iccid")
     private String iccid;
-    @Column(nullable = false)
+//    @Column(nullable = false)
     private Integer number;
     private String pin;
     @Enumerated
-    @Column(nullable = false)
+//    @Column(nullable = false)
     private Operator operator;
-    @Column(nullable = false)
+//    @Column(nullable = false)
     private String plan;
     private String ip;
-    @Column(nullable = false)
+//    @Column(nullable = false)
     private LocalDate activate;
     private LocalDate deActivate;
-
+    @OneToOne(mappedBy = "sim", cascade = CascadeType.ALL)
+    private Tablet tablet;
     @ManyToOne
     @JoinColumn(name = "truck_id")
     private Truck truck;
