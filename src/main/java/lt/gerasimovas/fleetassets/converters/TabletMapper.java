@@ -20,6 +20,8 @@ public class TabletMapper {
             tablet.setImei(tabletDTO.getImei());
             tablet.setNumber(tabletDTO.getNumber());
             tablet.setOrderNumber(tabletDTO.getOrderNumber());
+            tablet.setChargerType(tabletDTO.getChargerType());
+            tablet.setDateOfPurchase(tabletDTO.getDateOfPurchase());
 
             if (tabletDTO.getSimId() != null) {
                 Sim sim = new Sim();
@@ -46,6 +48,8 @@ public class TabletMapper {
             tabletDTO.setImei(tablet.getImei());
             tabletDTO.setNumber(tablet.getNumber());
             tabletDTO.setOrderNumber(tablet.getOrderNumber());
+            tabletDTO.setChargerType(tablet.getChargerType());
+            tabletDTO.setDateOfPurchase(tablet.getDateOfPurchase());
 
             if (tablet.getSim() != null) {
                 tabletDTO.setSimId(tablet.getSim().getId());
