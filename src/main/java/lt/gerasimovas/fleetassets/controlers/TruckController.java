@@ -1,6 +1,7 @@
 package lt.gerasimovas.fleetassets.controlers;
 
 import lt.gerasimovas.fleetassets.dto.TruckDTO;
+import lt.gerasimovas.fleetassets.enumes.WorkRegion;
 import lt.gerasimovas.fleetassets.services.TruckService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Pageable;
@@ -22,8 +23,10 @@ public class TruckController {
     private TruckService truckService;
 
     @GetMapping
-    ResponseEntity<List<TruckDTO>> getAllTrucks(@PageableDefault Pageable pageable) {
-        return ResponseEntity.ok(this.truckService.getAllDto(pageable));
+    ResponseEntity<List<TruckDTO>> getAllTrucks(@RequestParam(name = "workRegion", required = false)
+                                                WorkRegion workRegion,
+                                                @PageableDefault Pageable pageable) {
+        return ResponseEntity.ok(this.truckService.getAllDto(pageable, workRegion));
     }
 
     @GetMapping

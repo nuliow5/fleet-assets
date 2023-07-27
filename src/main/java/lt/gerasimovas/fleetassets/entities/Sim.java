@@ -17,19 +17,18 @@ public class Sim {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
-//    @Column(name = "iccid", nullable = false, unique = true)
-    @Column(name = "iccid")
+    @Column(name = "iccid", nullable = false, unique = true)
     private String iccid;
-//    @Column(nullable = false)
+    @Column(nullable = false)
     private Integer number;
     private String pin;
     @Enumerated
-//    @Column(nullable = false)
+    @Column(nullable = false)
     private Operator operator;
-//    @Column(nullable = false)
+    @Column(nullable = false)
     private String plan;
     private String ip;
-//    @Column(nullable = false)
+    @Column(nullable = false)
     private LocalDate activate;
     private LocalDate deActivate;
     @OneToOne(mappedBy = "sim", cascade = CascadeType.ALL)

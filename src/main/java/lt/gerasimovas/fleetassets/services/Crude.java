@@ -9,8 +9,8 @@ D - DTO
 E - Entity
  */
 
-public interface Crude<D, E> {
-    public List<D> getAllDto(Pageable pageable);
+public interface Crude<D, E, T> {
+    public List<D> getAllDto(Pageable pageable, T filterValue);
 
     public D getById(Long id);
 

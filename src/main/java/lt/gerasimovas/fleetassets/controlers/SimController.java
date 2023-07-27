@@ -1,6 +1,7 @@
 package lt.gerasimovas.fleetassets.controlers;
 
 import lt.gerasimovas.fleetassets.dto.SimDTO;
+import lt.gerasimovas.fleetassets.enumes.Operator;
 import lt.gerasimovas.fleetassets.services.SimService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Pageable;
@@ -23,8 +24,14 @@ public class SimController {
     private SimService simService;
 
     @GetMapping
-    public ResponseEntity<List<SimDTO>> getAllSims(@PageableDefault Pageable pageable) {
-        return ResponseEntity.ok(this.simService.getAllDto(pageable));
+    public ResponseEntity<List<SimDTO>> getAllSims(@RequestParam(name = "operator", required = false)
+                                                   Operator operator,
+                                                   @PageableDefault Pageable pageable) {
+        try {
+            return ResponseEntity.ok(this.simService.getAllDto(pageable, operator));
+        } catch (IllegalAccessError e) {
+            throw new ResponseStatusException(HttpStatus.BAD_REQUEST, e.getMessage());
+        }
     }
 
     @GetMapping()
@@ -50,9 +57,11 @@ public class SimController {
         } catch (NoSuchElementException e) {
             throw new ResponseStatusException(HttpStatus.NOT_FOUND,
                     String.format("Sim!! by ID: %s not found", simDTO.getId()));
-        } catch (NoSuchFieldException e){
+        } catch (NoSuchFieldException e) {
             throw new ResponseStatusException(HttpStatus.NOT_FOUND,
                     String.format("This truck License Plate or truckID, do not exist"));
+        } catch (IllegalArgumentException e) {
+            throw new ResponseStatusException(HttpStatus.BAD_REQUEST, e.getMessage());
         }
 
     }

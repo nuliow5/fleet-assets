@@ -1,6 +1,7 @@
 package lt.gerasimovas.fleetassets.controlers;
 
 import lt.gerasimovas.fleetassets.dto.PhoneDTO;
+import lt.gerasimovas.fleetassets.enumes.ChargerType;
 import lt.gerasimovas.fleetassets.services.PhoneService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Pageable;
@@ -22,8 +23,10 @@ public class PhoneController {
     private PhoneService phoneService;
 
     @GetMapping
-    public ResponseEntity<List<PhoneDTO>> getAllPhones(@PageableDefault Pageable pageable) {
-        return ResponseEntity.ok(this.phoneService.getAllDto(pageable));
+    public ResponseEntity<List<PhoneDTO>> getAllPhones(@RequestParam(name = "chargerType", required = false)
+                                                       ChargerType chargerType,
+                                                       @PageableDefault Pageable pageable) {
+        return ResponseEntity.ok(this.phoneService.getAllDto(pageable, chargerType));
     }
 
     @GetMapping("/{id}")
@@ -42,14 +45,24 @@ public class PhoneController {
     }
 
     @PutMapping
-    public ResponseEntity<PhoneDTO> updatePhone(@RequestBody PhoneDTO phoneDTO){
+    public ResponseEntity<PhoneDTO> updatePhone(@RequestBody PhoneDTO phoneDTO) {
         try {
             return ResponseEntity.ok(this.phoneService.update(phoneDTO));
-        } catch (NoSuchFieldException e){
+        } catch (NoSuchFieldException e) {
             throw new ResponseStatusException(HttpStatus.NOT_FOUND, e.getMessage());
         }
     }
 
+    @DeleteMapping("/{id}")
+    public ResponseEntity<Void> deletePhoneById(@PathVariable Long id) {
+        try {
+            this.phoneService.deleteById(id);
+            return ResponseEntity.noContent().build();
+        } catch (NoSuchElementException e) {
+            throw new ResponseStatusException(HttpStatus.NOT_FOUND,
+                    String.format("Phone by ID: %s not found", id));
+        }
+    }
 
 
 }

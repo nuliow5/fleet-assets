@@ -5,6 +5,7 @@ import lt.gerasimovas.fleetassets.converters.PhoneMapper;
 import lt.gerasimovas.fleetassets.dto.PhoneDTO;
 import lt.gerasimovas.fleetassets.entities.Phone;
 import lt.gerasimovas.fleetassets.entities.Truck;
+import lt.gerasimovas.fleetassets.enumes.ChargerType;
 import lt.gerasimovas.fleetassets.repositories.PhoneRepository;
 import lt.gerasimovas.fleetassets.repositories.TruckRepository;
 import org.springframework.data.domain.Pageable;
@@ -16,16 +17,16 @@ import java.util.Optional;
 
 @AllArgsConstructor
 @Service
-public class PhoneService implements Crude<PhoneDTO, Phone> {
+public class PhoneService implements Crude<PhoneDTO, Phone, ChargerType> {
     private PhoneRepository phoneRepository;
 
     private TruckRepository truckRepository;
 
 
-    @Override
-    public List<PhoneDTO> getAllDto(Pageable pageable) {
-        if (pageable != null) {
-            return PhoneMapper.convertPageToDtoList(this.phoneRepository.findAll(pageable));
+//    @Override
+    public List<PhoneDTO> getAllDto(Pageable pageable,ChargerType chargerType) {
+        if (chargerType != null) {
+            return PhoneMapper.convertPageToDtoList(this.phoneRepository.findByChargerType(chargerType, pageable));
         }
         return PhoneMapper.fromEntitiesListToDtoList(this.phoneRepository.findAll());
     }

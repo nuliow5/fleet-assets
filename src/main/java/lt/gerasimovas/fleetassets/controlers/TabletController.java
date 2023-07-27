@@ -1,6 +1,7 @@
 package lt.gerasimovas.fleetassets.controlers;
 
 import lt.gerasimovas.fleetassets.dto.TabletDTO;
+import lt.gerasimovas.fleetassets.enumes.ChargerType;
 import lt.gerasimovas.fleetassets.services.TabletService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Pageable;
@@ -22,8 +23,10 @@ public class TabletController {
     private TabletService tabletService;
 
     @GetMapping
-    public ResponseEntity<List<TabletDTO>> getAllTablets(@PageableDefault Pageable pageable) {
-        return ResponseEntity.ok(this.tabletService.getAllDto(pageable));
+    public ResponseEntity<List<TabletDTO>> getAllTablets(@RequestParam(name = "chargerType", required = false)
+                                                         ChargerType chargerType,
+                                                         @PageableDefault Pageable pageable) {
+        return ResponseEntity.ok(this.tabletService.getAllDto(pageable, chargerType));
     }
 
     @GetMapping("/{id}")
@@ -42,10 +45,10 @@ public class TabletController {
     }
 
     @PutMapping
-    public ResponseEntity<TabletDTO> updateTablet(@RequestBody TabletDTO tabletDTO){
+    public ResponseEntity<TabletDTO> updateTablet(@RequestBody TabletDTO tabletDTO) {
         try {
             return ResponseEntity.ok(this.tabletService.update(tabletDTO));
-        } catch (NoSuchElementException e){
+        } catch (NoSuchElementException e) {
             throw new ResponseStatusException(HttpStatus.NOT_FOUND,
                     String.format("Tablet by ID: %s not found", tabletDTO.getId()));
         } catch (NoSuchFieldException e) {
@@ -54,11 +57,11 @@ public class TabletController {
     }
 
     @DeleteMapping("/{id}")
-    public ResponseEntity<Void>  deleteTabletById(@PathVariable long id){
+    public ResponseEntity<Void> deleteTabletById(@PathVariable long id) {
         try {
             this.tabletService.deleteById(id);
             return ResponseEntity.noContent().build();
-        } catch (NoSuchElementException e){
+        } catch (NoSuchElementException e) {
             throw new ResponseStatusException(HttpStatus.NOT_FOUND,
                     String.format("Truck by ID: %s not found", id));
         }

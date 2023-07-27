@@ -7,6 +7,7 @@ import lt.gerasimovas.fleetassets.dto.TabletDTO;
 import lt.gerasimovas.fleetassets.entities.Sim;
 import lt.gerasimovas.fleetassets.entities.Tablet;
 import lt.gerasimovas.fleetassets.entities.Truck;
+import lt.gerasimovas.fleetassets.enumes.ChargerType;
 import lt.gerasimovas.fleetassets.repositories.SimRepository;
 import lt.gerasimovas.fleetassets.repositories.TabletRepository;
 import lt.gerasimovas.fleetassets.repositories.TruckRepository;
@@ -19,15 +20,15 @@ import java.util.Optional;
 
 @AllArgsConstructor
 @Service
-public class TabletService implements Crude<TabletDTO, Tablet> {
+public class TabletService implements Crude<TabletDTO, Tablet, ChargerType> {
     private TabletRepository tabletRepository;
     private SimRepository simRepository;
     private TruckRepository truckRepository;
 
     @Override
-    public List<TabletDTO> getAllDto(Pageable pageable) {
-        if (pageable != null) {
-            return TabletMapper.convertPageToDtoList(this.tabletRepository.findAll(pageable));
+    public List<TabletDTO> getAllDto(Pageable pageable, ChargerType chargerType) {
+        if (chargerType != null) {
+            return TabletMapper.convertPageToDtoList(this.tabletRepository.findByChargerType(chargerType, pageable));
         }
         return TabletMapper.fromEntitiesListToDtoList(this.tabletRepository.findAll());
     }

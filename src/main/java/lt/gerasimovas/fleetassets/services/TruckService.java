@@ -4,6 +4,7 @@ import lombok.AllArgsConstructor;
 import lt.gerasimovas.fleetassets.converters.TruckMapper;
 import lt.gerasimovas.fleetassets.dto.TruckDTO;
 import lt.gerasimovas.fleetassets.entities.Truck;
+import lt.gerasimovas.fleetassets.enumes.WorkRegion;
 import lt.gerasimovas.fleetassets.repositories.TruckRepository;
 import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Service;
@@ -12,13 +13,13 @@ import java.util.List;
 import java.util.NoSuchElementException;
 @Service
 @AllArgsConstructor
-public class TruckService implements Crude<TruckDTO, Truck>{
+public class TruckService implements Crude<TruckDTO, Truck, WorkRegion>{
 
     private TruckRepository truckRepository;
-    @Override
-    public List<TruckDTO> getAllDto(Pageable pageable) {
-        if (pageable != null){
-            return TruckMapper.convertPageToDtoList(this.truckRepository.findAll(pageable));
+//    @Override
+    public List<TruckDTO> getAllDto(Pageable pageable, WorkRegion workRegion) {
+        if (workRegion != null){
+            return TruckMapper.convertPageToDtoList(this.truckRepository.findByWorkRegion(workRegion, pageable));
         }
         return TruckMapper.fromEntitiesListToDtoList(this.truckRepository.findAll());
     }
