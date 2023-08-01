@@ -27,11 +27,9 @@ public class SimController {
     public ResponseEntity<List<SimDTO>> getAllSims(@RequestParam(name = "operator", required = false)
                                                    Operator operator,
                                                    @PageableDefault Pageable pageable) {
-        try {
-            return ResponseEntity.ok(this.simService.getAllDto(pageable, operator));
-        } catch (IllegalAccessError e) {
-            throw new ResponseStatusException(HttpStatus.BAD_REQUEST, e.getMessage());
-        }
+
+        return ResponseEntity.ok(this.simService.getAllDto(pageable, operator));
+
     }
 
     @GetMapping()

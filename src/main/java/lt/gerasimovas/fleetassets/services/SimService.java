@@ -9,7 +9,6 @@ import lt.gerasimovas.fleetassets.enumes.Operator;
 import lt.gerasimovas.fleetassets.repositories.SimRepository;
 import lt.gerasimovas.fleetassets.repositories.TruckRepository;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Service;
 
