@@ -1,12 +1,13 @@
 package lt.gerasimovas.fleetassets.entities;
 
-import jakarta.persistence.*;
+
 import lombok.AllArgsConstructor;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
 import lt.gerasimovas.fleetassets.enumes.WorkRegion;
 
+import javax.persistence.*;
 import java.time.LocalDateTime;
 
 @Entity

@@ -1,6 +1,6 @@
 package lt.gerasimovas.fleetassets.entities;
 
-import jakarta.persistence.*;
+import javax.persistence.*;
 import lombok.*;
 import lt.gerasimovas.fleetassets.enumes.ChargerType;
 
