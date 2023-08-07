@@ -1,5 +1,6 @@
 //package lt.gerasimovas.fleetassets;
 //
+//import lt.gerasimovas.fleetassets.auth.AuthenticationService;
 //import lt.gerasimovas.fleetassets.entities.UserEntity;
 //import lt.gerasimovas.fleetassets.enumes.Role;
 //import lt.gerasimovas.fleetassets.repositories.UserEntityRepository;
@@ -16,13 +17,14 @@
 //    @Autowired
 //    PasswordEncoder passwordEncoder;
 //    @EventListener(ApplicationReadyEvent.class)
-//    public void startApp(){
+//    public void startApp(AuthenticationService service){
 //        if(userEntityRepository.findAll().isEmpty()){
 //            UserEntity employee = new UserEntity();
-//            employee.setUsername("admin");
-//            employee.setPassword(passwordEncoder.encode("admin"));
+//            employee.setEmail("root");
+//            employee.setPassword(passwordEncoder.encode("root"));
 //            employee.setRole(Role.ADMIN);
 //            userEntityRepository.saveAndFlush(employee);
+//            System.out.println("Admin token: " + service.register(employee).getAccessToken());
 //        }
 //
 //    }
