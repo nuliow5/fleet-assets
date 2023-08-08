@@ -111,7 +111,7 @@ public class SimService implements Crude<SimDTO, Sim, Operator>{
             if (truck != null){
                 simForUpdate.setTruck(truck);
             } else {
-                throw new NoSuchElementException(String.format("Sim!! by ID: %s not found", simDTO.getId()));
+                throw new NoSuchElementException("This truck License Plate or truckID, do not exist");
             }
         }
 

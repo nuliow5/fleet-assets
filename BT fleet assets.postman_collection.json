@@ -1,0 +1,873 @@
+{
+	"info": {
+		"_postman_id": "7cd0e591-c3e2-4ef7-95d2-e871ffab288c",
+		"name": "BT fleet assets",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+		"_exporter_id": "27834885"
+	},
+	"item": [
+		{
+			"name": "SIM",
+			"item": [
+				{
+					"name": "sims",
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "eyJhbGciOiJIUzI1NiJ9.eyJzdWIiOiJhZG1pbkBtYWlsLmNvbSIsImlhdCI6MTY5MTUwODEyOCwiZXhwIjoxNjkxNTk0NTI4fQ.0AdxN5NHWncYOlNkg_a3i3UlIGSyAqVKP_eXdTbAKwA",
+									"type": "string"
+								}
+							]
+						},
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "http://localhost:8082/assets/sims?operator=TELE2",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8082",
+							"path": [
+								"assets",
+								"sims"
+							],
+							"query": [
+								{
+									"key": "operator",
+									"value": "TELE2"
+								}
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "sims by id",
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "eyJhbGciOiJIUzI1NiJ9.eyJzdWIiOiJhZG1pbkBtYWlsLmNvbSIsImlhdCI6MTY5MTUwODI2OSwiZXhwIjoxNjkxNTk0NjY5fQ.maP1uTQh6VfrDUN-qkhGgRm4IWofrExKC3PVTcKZYLo",
+									"type": "string"
+								}
+							]
+						},
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "http://localhost:8082/assets/sims/:id",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8082",
+							"path": [
+								"assets",
+								"sims",
+								":id"
+							],
+							"variable": [
+								{
+									"key": "id",
+									"value": "77"
+								}
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "sim",
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "eyJhbGciOiJIUzI1NiJ9.eyJzdWIiOiJhZG1pbkBtYWlsLmNvbSIsImlhdCI6MTY5MTUwOTQ1MiwiZXhwIjoxNjkxNTk1ODUyfQ.uB338Tz58nDkg9or5L9gHYlYiz_TnzeRWM0DOmgXyFM",
+									"type": "string"
+								}
+							]
+						},
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"iccid\" : \"12351111\",\r\n    \"number\" : 60000002,\r\n    \"pin\" : \"nera\",\r\n    \"operator\" : \"TELE2\",\r\n    \"plan\" : \"M2M EU 3 GB\",\r\n    \"ip\": \"Dinaminis\",\r\n    \"activate\" : \"2021-11-03\",\r\n    \"deActivate\": \"\"\r\n   \r\n\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://localhost:8082/assets/sims",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8082",
+							"path": [
+								"assets",
+								"sims"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "sim update",
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "eyJhbGciOiJIUzI1NiJ9.eyJzdWIiOiJhZG1pbkBtYWlsLmNvbSIsImlhdCI6MTY5MTQ5MzYxNSwiZXhwIjoxNjkxNTgwMDE1fQ.PxfqniKi1Nvd1IgbkPHhswX_Nrx4s_5buDfw2zjEkKc",
+									"type": "string"
+								}
+							]
+						},
+						"method": "PUT",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n        \"id\": 75,\r\n        \"iccid\": \"893000000000000111\",\r\n        \"number\": 61885286,\r\n        \"pin\": \"3712\",\r\n        \"operator\": \"TELIA\",\r\n        \"plan\": \"M2M EU 3 GB\",\r\n        \"ip\": \"10.10.20.18\",\r\n        \"activate\": \"2021-09-27\",\r\n        \"deActivate\": \"2023-02-15\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://localhost:8082/assets/sims",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8082",
+							"path": [
+								"assets",
+								"sims"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "sim updateTruckid + sim Owner=truckLicensePlate Copy",
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "eyJhbGciOiJIUzI1NiJ9.eyJzdWIiOiJhZG1pbkBtYWlsLmNvbSIsImlhdCI6MTY5MTUwOTYxMCwiZXhwIjoxNjkxNTk2MDEwfQ.Gf-i8iNiTtqSo8-srINn9VeNLwaOoX3xcKG_QUk-Fz4",
+									"type": "string"
+								}
+							]
+						},
+						"method": "PUT",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"id\" : 80,\r\n    \"truckId\": 2\r\n \r\n   \r\n\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://localhost:8082/assets/sims",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8082",
+							"path": [
+								"assets",
+								"sims"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "sim update truckLicensePlate",
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "eyJhbGciOiJIUzI1NiJ9.eyJzdWIiOiJhZG1pbkBtYWlsLmNvbSIsImlhdCI6MTY5MTUwODI2OSwiZXhwIjoxNjkxNTk0NjY5fQ.maP1uTQh6VfrDUN-qkhGgRm4IWofrExKC3PVTcKZYLo",
+									"type": "string"
+								}
+							]
+						},
+						"method": "PUT",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"id\": 77,\r\n    \"truckLicensePlate\": \"DDD000\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://localhost:8082/assets/sims",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8082",
+							"path": [
+								"assets",
+								"sims"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "sim",
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "eyJhbGciOiJIUzI1NiJ9.eyJzdWIiOiJhZG1pbkBtYWlsLmNvbSIsImlhdCI6MTY5MTQ5NTI2OCwiZXhwIjoxNjkxNTgxNjY4fQ.E9NdNd1YO_zy-OVCldhSqp-FjLXORqM5aN7WCsp5dDk",
+									"type": "string"
+								}
+							]
+						},
+						"method": "DELETE",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"id\" : 1,\r\n   \r\n    \"pin\" : \"0000\"\r\n   \r\n\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://localhost:8082/assets/sims/:id",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8082",
+							"path": [
+								"assets",
+								"sims",
+								":id"
+							],
+							"variable": [
+								{
+									"key": "id",
+									"value": "76"
+								}
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "TRUCK",
+			"item": [
+				{
+					"name": "trucks",
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "eyJhbGciOiJIUzI1NiJ9.eyJzdWIiOiJtYW5hZ2VyQG1haWwuY29tIiwiaWF0IjoxNjkxNDk0NDcyLCJleHAiOjE2OTE1ODA4NzJ9.YtgncWTU1SCmV08qhGieY4viPx4S8yF9QmT_SjnNb14",
+									"type": "string"
+								}
+							]
+						},
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "http://localhost:8082/trucks",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8082",
+							"path": [
+								"trucks"
+							],
+							"query": [
+								{
+									"key": "workRegion",
+									"value": "EUROPE",
+									"disabled": true
+								}
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "truck by id",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "http://localhost:8082/trucks/:id",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8082",
+							"path": [
+								"trucks",
+								":id"
+							],
+							"variable": [
+								{
+									"key": "id",
+									"value": "1"
+								}
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "truck",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"licensePlate\" : \"KGH490\",\r\n    \"model\" : \"DAF\",\r\n    \"isWork\" : false,\r\n    \"workRegion\" : \"BALTIC\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://localhost:8082/trucks",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8082",
+							"path": [
+								"trucks"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "truck",
+					"request": {
+						"method": "PUT",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"id\": 4,\r\n    \"licensePlate\" : \"ZZZ000\",\r\n    \"model\" : \"BUSIKAS\",\r\n    \"workRegion\" : \"BALTIC\"\r\n\r\n\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://localhost:8082/trucks",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8082",
+							"path": [
+								"trucks"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "truck by id",
+					"request": {
+						"method": "DELETE",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"id\" : 1,\r\n   \r\n    \"pin\" : \"0000\"\r\n   \r\n\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://localhost:8082/trucks/:id",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8082",
+							"path": [
+								"trucks",
+								":id"
+							],
+							"variable": [
+								{
+									"key": "id",
+									"value": "4"
+								}
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "TABLET",
+			"item": [
+				{
+					"name": "tablets",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "http://localhost:8082/assets/tablets?chargerType=MICRO_USB",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8082",
+							"path": [
+								"assets",
+								"tablets"
+							],
+							"query": [
+								{
+									"key": "chargerType",
+									"value": "MICRO_USB"
+								}
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "tablet by id",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "http://localhost:8082/assets/tablets/:id",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8082",
+							"path": [
+								"assets",
+								"tablets",
+								":id"
+							],
+							"variable": [
+								{
+									"key": "id",
+									"value": null
+								}
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "tablet",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"model\" : \"Lenovo TAB M8\",\r\n    \"imei\" : \"861219041007265\",\r\n    \"number\" : \"L877\",\r\n    \"orderNumber\" : \"topocentras751\",\r\n    \"simId\" : 4\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://localhost:8082/assets/tablets",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8082",
+							"path": [
+								"assets",
+								"tablets"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "tablet SET sim to tablet",
+					"request": {
+						"method": "PUT",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"id\": 1,\r\n    \"simId\": 6\r\n    // \"simNumber\": 61885286\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://localhost:8082/assets/tablets",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8082",
+							"path": [
+								"assets",
+								"tablets"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "tablet update ...",
+					"request": {
+						"method": "PUT",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"id\": 1,\r\n    \"truckId\": 2\r\n    // \"truckLicensePlate\": \"WGM0219J\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://localhost:8082/assets/tablets",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8082",
+							"path": [
+								"assets",
+								"tablets"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "tablet",
+					"request": {
+						"method": "DELETE",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"id\" : 1,\r\n   \r\n    \"pin\" : \"0000\"\r\n   \r\n\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://localhost:8082/assets/tablets/:id",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8082",
+							"path": [
+								"assets",
+								"tablets",
+								":id"
+							],
+							"variable": [
+								{
+									"key": "id",
+									"value": null
+								}
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "PHONES",
+			"item": [
+				{
+					"name": "phones",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "http://localhost:8082/assets/phones?chargerType=MICRO_USB",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8082",
+							"path": [
+								"assets",
+								"phones"
+							],
+							"query": [
+								{
+									"key": "chargerType",
+									"value": "MICRO_USB"
+								}
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "phones by id",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "http://localhost:8082/assets/phones/:id",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8082",
+							"path": [
+								"assets",
+								"phones",
+								":id"
+							],
+							"variable": [
+								{
+									"key": "id",
+									"value": null
+								}
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "phone",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"model\" : \"NOKIA125\",\r\n    \"imei\" : \"350540736980690\",\r\n    \"number\" : \"T1997\",\r\n    \"orderNumber\" : \"mob003\",\r\n    \"dateOfPurchase\" : \"2022-01-26\",\r\n    \"chargerType\" : \"MICRO_USB\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://localhost:8082/assets/phones",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8082",
+							"path": [
+								"assets",
+								"phones"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "phone set to truck",
+					"request": {
+						"method": "PUT",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"id\": 1,\r\n    \"simId\": 6\r\n    // \"simNumber\": 61885286\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://localhost:8082/assets/phones",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8082",
+							"path": [
+								"assets",
+								"phones"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "phone update ...",
+					"request": {
+						"method": "PUT",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"id\": 1,\r\n    \"truckId\": 2\r\n    // \"truckLicensePlate\": \"WGM0219J\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://localhost:8082/assets/phones",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8082",
+							"path": [
+								"assets",
+								"phones"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "phone",
+					"request": {
+						"method": "DELETE",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"id\" : 1,\r\n   \r\n    \"pin\" : \"0000\"\r\n   \r\n\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://localhost:8082/assets/phones/:id",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8082",
+							"path": [
+								"assets",
+								"phones",
+								":id"
+							],
+							"variable": [
+								{
+									"key": "id",
+									"value": null
+								}
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "security",
+			"item": [
+				{
+					"name": "post login",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"email\": \"admin@mail.com\", \r\n    \"password\": \"admin\"\r\n}\r\n\r\n// {\r\n//     \"email\": \"manager@mail.com\", \r\n//     \"password\": \"manager\"\r\n// }",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://localhost:8082/auth/authenticate",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8082",
+							"path": [
+								"auth",
+								"authenticate"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "register",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"firstname\": \"user1\",\r\n    \"lastname\": \"userLastname1\",\r\n    \"email\": \"user1@mail.com\", \r\n    \"password\": \"user1\",\r\n    \"role\": \"MANAGER\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://localhost:8082/auth/register",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8082",
+							"path": [
+								"auth",
+								"register"
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		}
+	]
+}
