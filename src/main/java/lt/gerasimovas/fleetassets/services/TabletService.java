@@ -21,9 +21,9 @@ import java.util.Optional;
 @AllArgsConstructor
 @Service
 public class TabletService implements Crude<TabletDTO, Tablet, ChargerType> {
-    private TabletRepository tabletRepository;
-    private SimRepository simRepository;
-    private TruckRepository truckRepository;
+    private final TabletRepository tabletRepository;
+    private final SimRepository simRepository;
+    private final TruckRepository truckRepository;
 
     @Override
     public List<TabletDTO> getAllDto(Pageable pageable, ChargerType chargerType) {

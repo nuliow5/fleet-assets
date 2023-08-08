@@ -18,7 +18,7 @@ import java.util.NoSuchElementException;
 
 @RestController
 @CrossOrigin(origins = "*", maxAge = 3600)
-@PreAuthorize("hasRole('ADMIN')")
+
 @RequestMapping("/assets/sims")
 public class SimController {
 
@@ -40,14 +40,18 @@ public class SimController {
         try {
             return ResponseEntity.ok(this.simService.getById(id));
         } catch (NoSuchElementException e) {
-            throw new ResponseStatusException(HttpStatus.NOT_FOUND,
-                    String.format("Sim by ID: %s not found", id));
+            throw new ResponseStatusException(HttpStatus.NOT_FOUND, e.getMessage());
         }
     }
 
     @PostMapping
     public ResponseEntity<SimDTO> addSim(@RequestBody SimDTO simDTO) {
-        return ResponseEntity.ok(this.simService.create(simDTO));
+        try{
+            return ResponseEntity.ok(this.simService.create(simDTO));
+        } catch (IllegalArgumentException e){
+            throw new ResponseStatusException(HttpStatus.BAD_REQUEST, e.getMessage());
+        }
+
     }
 
     @PutMapping
@@ -55,25 +59,22 @@ public class SimController {
         try {
             return ResponseEntity.ok(this.simService.update(simDTO));
         } catch (NoSuchElementException e) {
-            throw new ResponseStatusException(HttpStatus.NOT_FOUND,
-                    String.format("Sim!! by ID: %s not found", simDTO.getId()));
+            throw new ResponseStatusException(HttpStatus.NOT_FOUND, e.getMessage());
         } catch (NoSuchFieldException e) {
-            throw new ResponseStatusException(HttpStatus.NOT_FOUND,
-                    String.format("This truck License Plate or truckID, do not exist"));
+            throw new ResponseStatusException(HttpStatus.NOT_FOUND, e.getMessage());
         } catch (IllegalArgumentException e) {
             throw new ResponseStatusException(HttpStatus.BAD_REQUEST, e.getMessage());
         }
 
     }
-
+    @PreAuthorize("hasRole('ADMIN')")
     @DeleteMapping("/{id}")
     public ResponseEntity<Void> deleteSimById(@PathVariable Long id) {
         try {
             this.simService.deleteById(id);
             return ResponseEntity.noContent().build();
         } catch (NoSuchElementException e) {
-            throw new ResponseStatusException(HttpStatus.NOT_FOUND,
-                    String.format("Sim by ID: %s not found", id));
+            throw new ResponseStatusException(HttpStatus.NOT_FOUND, e.getMessage());
         }
     }
 
