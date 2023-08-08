@@ -60,13 +60,13 @@ public class SecurityConfig {
                 .permitAll()
 
 
-                .antMatchers("/assets/**").hasAnyRole(ADMIN.name(), MANAGER.name())
+                .antMatchers("/**").hasAnyRole(ADMIN.name(), MANAGER.name())
 
 
-                .antMatchers(GET, "/api/v1/assets/**").hasAnyAuthority(ADMIN_READ.name(), MANAGER_READ.name())
-                .antMatchers(POST, "/api/v1/assets/**").hasAnyAuthority(ADMIN_CREATE.name(), MANAGER_CREATE.name())
-                .antMatchers(PUT, "/api/v1/assets/**").hasAnyAuthority(ADMIN_UPDATE.name(), MANAGER_UPDATE.name())
-                .antMatchers(DELETE, "/api/v1/assets/**").hasAnyAuthority(ADMIN_DELETE.name(), MANAGER_DELETE.name())
+                .antMatchers(GET, "/assets/**").hasAnyAuthority(ADMIN_READ.name(), MANAGER_READ.name())
+                .antMatchers(POST, "/assets/**").hasAnyAuthority(ADMIN_CREATE.name(), MANAGER_CREATE.name())
+                .antMatchers(PUT, "/assets/**").hasAnyAuthority(ADMIN_UPDATE.name(), MANAGER_UPDATE.name())
+                .antMatchers(DELETE, "/assets/**").hasAnyAuthority(ADMIN_DELETE.name())
 
 
                 /* .requestMatchers("/api/v1/admin/**").hasRole(ADMIN.name())

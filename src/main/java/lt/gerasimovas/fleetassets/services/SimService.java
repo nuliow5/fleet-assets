@@ -35,7 +35,12 @@ public class SimService implements Crude<SimDTO, Sim, Operator>{
 
     @Override
     public SimDTO getById(Long id) {
-        return SimMapper.fromEntityToDto(this.simRepository.findById(id).get());
+        if (this.simRepository.findById(id).get() != null){
+            return SimMapper.fromEntityToDto(this.simRepository.findById(id).get());
+        } else {
+            throw new IllegalArgumentException(String.format("Sim by ID: %s not found", id));
+        }
+
     }
 
     @Override
@@ -58,9 +63,10 @@ public class SimService implements Crude<SimDTO, Sim, Operator>{
         Sim simForUpdate = this.simRepository.findById(simDTO.getId()).get();
         if (simDTO.getIccid() != null && this.simRepository.findByIccid(simDTO.getIccid()) == null){
             simForUpdate.setIccid(simDTO.getIccid());
-        } else {
-            throw new IllegalArgumentException("Sim by iccid all ready existing");
         }
+//        else {
+//            throw new IllegalArgumentException("Sim by iccid all ready existing");
+//        }
 
         if (simDTO.getNumber() != null){
             simForUpdate.setNumber(simDTO.getNumber());
@@ -97,7 +103,7 @@ public class SimService implements Crude<SimDTO, Sim, Operator>{
             if (!truck.isEmpty()){
                 simForUpdate.setTruck(truck.get());
             } else {
-                throw new NoSuchFieldException();
+                throw new NoSuchFieldException("This truck License Plate or truckID, do not exist");
             }
 
         } else if (simDTO.getTruckLicensePlate() != null) {
@@ -105,9 +111,11 @@ public class SimService implements Crude<SimDTO, Sim, Operator>{
             if (truck != null){
                 simForUpdate.setTruck(truck);
             } else {
-                throw new NoSuchFieldException();
+                throw new NoSuchElementException(String.format("Sim!! by ID: %s not found", simDTO.getId()));
             }
         }
+
+
 
         this.simRepository.save(simForUpdate);
 
@@ -119,7 +127,7 @@ public class SimService implements Crude<SimDTO, Sim, Operator>{
         if (this.simRepository.findById(id).get() != null){
             this.simRepository.deleteById(id);
         } else {
-            throw new NoSuchElementException();
+            throw new NoSuchElementException(String.format("Sim by ID: %s not found", id));
         }
 
     }

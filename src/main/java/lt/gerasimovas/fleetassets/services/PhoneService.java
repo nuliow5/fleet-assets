@@ -33,7 +33,11 @@ public class PhoneService implements Crude<PhoneDTO, Phone, ChargerType> {
 
     @Override
     public PhoneDTO getById(Long id) {
-        return PhoneMapper.fromEntityToDto(this.phoneRepository.findById(id).get());
+        if (this.phoneRepository.findById(id) != null){
+            return PhoneMapper.fromEntityToDto(this.phoneRepository.findById(id).get());
+        } else {
+            throw new NoSuchElementException(String.format("Phone by ID: %s not found", id));
+        }
     }
 
     @Override
@@ -90,7 +94,7 @@ public class PhoneService implements Crude<PhoneDTO, Phone, ChargerType> {
         if (this.phoneRepository.findById(id) != null) {
             this.phoneRepository.deleteById(id);
         } else {
-            throw new NoSuchElementException();
+            throw new NoSuchElementException(String.format("Phone by ID: %s not found", id));
         }
     }
 }
